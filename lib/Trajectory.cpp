@@ -24,6 +24,7 @@ Trajectory::Trajectory (){
   hdrSize=0;
   frameSize=0;
   lastFrame=0;
+	lastPos=0;
   hdr.clear();
   nframe=0;
   npriv=0;
@@ -162,6 +163,9 @@ void Trajectory::readHeader(std::ifstream &trjin){
 
 	buffer=NULL;
 	cbuffer=NULL;
+
+	trjin.seekg(0, std::ios::end);
+	this->setLastPos(trjin.tellg());
 
 	trjin.seekg(0, std::ios::beg);
 
@@ -364,7 +368,7 @@ void Trajectory::cloneHeader(Trajectory *ftrjin){
 	}
 }
 
-void Trajectory::readFrame(std::ifstream &trjin, unsigned int frame){
+bool Trajectory::readFrame(std::ifstream &trjin, unsigned int frame){
 	double *dbuffer; //Needed for crystal!
 	float *xbuffer;
 	float *ybuffer;
@@ -397,6 +401,10 @@ void Trajectory::readFrame(std::ifstream &trjin, unsigned int frame){
   this->setLastFrame(frame+1); 
   //The "+1" positions the pointer at the end of this frame after it has been read
 
+	if (trjin.tellg() == this->getLastPos()){
+	  //End-of-file, note that trjin.good()/trjin.eof() wouldn't work!
+		return false;
+	}
 
   this->iframe++;
   if (this->getShow() == true || this->getScan() == true){
@@ -495,6 +503,8 @@ void Trajectory::readFrame(std::ifstream &trjin, unsigned int frame){
 	if (zbuffer != NULL){
 		delete zbuffer;
 	}
+
+	return true;
 }
 
 void Trajectory::writeFrame(std::ofstream &trjout, Trajectory *ftrjin){
@@ -578,6 +588,10 @@ unsigned int Trajectory::getFrameSize(){
 
 unsigned int Trajectory::getLastFrame(){
   return lastFrame;
+}
+
+unsigned int Trajectory::getLastPos(){
+	return lastPos;
 }
 
 std::string Trajectory::getFormat(){
@@ -698,6 +712,10 @@ void Trajectory::setFrameSize(const unsigned int &size){
 
 void Trajectory::setLastFrame(const unsigned int &frame){
   lastFrame=frame;
+}
+
+void Trajectory::setLastPos(const unsigned int &pos){
+	lastPos=pos;
 }
 
 void Trajectory::setShow(const bool &val){

@@ -20,6 +20,7 @@ class Trajectory {
     unsigned int hdrSize;
     unsigned int frameSize;
     unsigned int lastFrame;
+		unsigned int lastPos;
 
 		std::string hdr;
 		int nframe; //ICNTRL[1], Number of frames
@@ -76,7 +77,7 @@ class Trajectory {
     void writeHeader(std::ofstream &trjout);
 		void showHeader();
 		void cloneHeader(Trajectory *ftrjin);
-		void readFrame(std::ifstream &trjin, unsigned int frame);
+		bool readFrame(std::ifstream &trjin, unsigned int frame);
 		void scanFrame(std::ifstream &trjin, unsigned int frame);
     void writeFrame(std::ofstream &trjout, Trajectory *ftrjin=NULL);
 		std::string getHeader(){return hdr;};
@@ -87,6 +88,7 @@ class Trajectory {
     unsigned int getHdrSize();
     unsigned int getFrameSize();
     unsigned int getLastFrame();
+		unsigned int getLastPos();
     bool getShow();
 		bool getScan();
 		Molecule* getMolecule();
@@ -120,6 +122,7 @@ class Trajectory {
     void setHdrSize(const unsigned int &size);
     void setFrameSize(const unsigned int &size);
     void setLastFrame(const unsigned int &frame);
+		void setLastPos(const unsigned int &pos);
     void setShow(const bool &val);
 		void setScan(const bool &val);
     void setHdr(const std::string &hdrin);
