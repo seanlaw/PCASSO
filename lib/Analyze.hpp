@@ -21,13 +21,8 @@ class Analyze {
     //directly to the analysis function or set the members as protected
     std::vector<std::string> sel;
 		std::vector<Molecule*> mol;
-		std::vector<double> tdata; //Time dependent data, maybe for averaging
 		std::vector<std::vector<double> > fdata; //Frame data, cleared after each frame
-    std::vector<unsigned int> modes;
-		int ndata; //Total number of datapoints
-		bool resel; //Re-do selection for each analysis, not implemented yet
     std::string ifile;
-    std::string ofile;
 
 	public:
 		Analyze ();
@@ -41,16 +36,9 @@ class Analyze {
 		void resizeNMol(const int sizein);
 		Molecule* getMol(const int& element);
 		unsigned int getNMol();
-		void setNData(const int& ndatain);
-		int& getNData();
-		std::vector<double>& getTDataVec();
 		std::vector<std::vector<double> >& getFDataVec();
     void setInput(const std::string& fin);
     std::string getInput();
-    void setOutput (const std::string& fin);
-    std::string getOutput();
-    void addModes(const std::vector<unsigned int>& modesin);
-    std::vector<unsigned int>& getModes();
 		
 		//Virtual functions
     virtual void readTopology(Molecule* molin, std::string topin="");

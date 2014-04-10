@@ -18,12 +18,6 @@
 Analyze::Analyze (){
 	sel.clear();
 	mol.clear();
-	tdata.clear();
-	fdata.clear();
-	ndata=0;
-	resel=false;
-  ifile.clear();
-  ofile.clear();
 }
 
 Analyze::~Analyze (){
@@ -95,28 +89,8 @@ unsigned int Analyze::getNMol(){
 	return this->mol.size();
 }
 
-void Analyze::setNData(const int& ndatain){
-	ndata=ndatain;
-}
-
-int& Analyze::getNData(){
-	return ndata;
-}
-
-std::vector<double>& Analyze::getTDataVec(){
-	return tdata;
-}
-
 std::vector<std::vector<double> >& Analyze::getFDataVec(){
 	return fdata;
-}
-
-void Analyze::addModes(const std::vector<unsigned int>& modesin){
-  modes=modesin;
-}
-
-std::vector<unsigned int>& Analyze::getModes(){
-  return modes;
 }
 
 void Analyze::setInput(const std::string& fin){
@@ -125,13 +99,6 @@ void Analyze::setInput(const std::string& fin){
 
 std::string Analyze::getInput(){
   return ifile;
-}
-
-void Analyze::setOutput (const std::string& fin){
-  ofile=fin;
-}
-std::string Analyze::getOutput(){
-  return ofile;
 }
 
 //All preAnalysis Functions
