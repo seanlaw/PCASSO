@@ -2,7 +2,7 @@
 
 include ../makefile.defs
 
-LIBOBJS = Analyze.o Atom.o BTree.o Chain.o Constants.o DTree.o Enum.o Misc.o Molecule.o PCASSO.o PDB.o Prmtop.o Residue.o Select.o Trajectory.o Vector.o 
+LIBOBJS = Analyze.o Atom.o Chain.o Constants.o DTree.o Enum.o Misc.o Molecule.o PCASSO.o PDB.o Prmtop.o Residue.o Select.o Trajectory.o Vector.o 
 
 all:	libpcasso.$(LIBEXT)
 
