@@ -20,7 +20,7 @@ class Trajectory {
     unsigned int hdrSize;
     unsigned int frameSize;
     unsigned int lastFrame;
-		unsigned long long int lastPos;
+		std::streampos lastPos;
 
 		std::string hdr;
 		int nframe; //ICNTRL[1], Number of frames
@@ -88,7 +88,7 @@ class Trajectory {
     unsigned int getHdrSize();
     unsigned int getFrameSize();
     unsigned int getLastFrame();
-		unsigned long long int getLastPos();
+		std::streampos getLastPos();
     bool getShow();
 		bool getScan();
 		Molecule* getMolecule();
@@ -122,7 +122,7 @@ class Trajectory {
     void setHdrSize(const unsigned int &size);
     void setFrameSize(const unsigned int &size);
     void setLastFrame(const unsigned int &frame);
-		void setLastPos(const unsigned long long int &pos);
+		void setLastPos(const std::streampos &pos);
     void setShow(const bool &val);
 		void setScan(const bool &val);
     void setHdr(const std::string &hdrin);
