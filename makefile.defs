@@ -1,8 +1,8 @@
 MAKE = make
 CC = gcc
 CXX = g++
-CFLAGS = -Wall -lm
-CXXFLAGS = -Wall -lm
+CFLAGS = -Wall
+CXXFLAGS = -Wall
 OPTFLAGS = -O3
 #DEBUG = -g
 OTHERLIBS = ../
