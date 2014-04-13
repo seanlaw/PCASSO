@@ -12,7 +12,7 @@ struct DTreeNode{
 	unsigned int inx; //1-D vector<double> index, no response column!
 	DTreeNode *left;
 	DTreeNode *right;
-	std::string cls;
+	std::string leaf;
 
 	DTreeNode* getDTreeNodeLeft();
 	DTreeNode* getDTreeNodeRight();

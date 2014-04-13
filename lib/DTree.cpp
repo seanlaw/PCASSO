@@ -13,40 +13,40 @@ DTree::~DTree(){
 	delDTree();
 }
 
-void DTree::delDTree(DTreeNode *leaf){
-	if (leaf != NULL){
-		delDTree(leaf->left);
-		delDTree(leaf->right);
-		delete leaf;
+void DTree::delDTree(DTreeNode *node){
+	if (node != NULL){
+		delDTree(node->left);
+		delDTree(node->right);
+		delete node;
 	}
 }
 
-void DTree::addDTree(double key, DTreeNode *leaf, unsigned int index, std::string classin){
-  if (leaf->left != NULL){
-    addDTree(key, leaf->left, index, classin);
+void DTree::addDTree(double key, DTreeNode *node, unsigned int index, std::string classin){
+  if (node->left != NULL){
+    addDTree(key, node->left, index, classin);
   }
   else{
-    leaf->left=new DTreeNode;
-    leaf->left->key_value=key;
-		leaf->left->inx=index;
-    leaf->left->left=NULL; //Sets left child of child node to NULL
-    leaf->left->right=NULL; //Sets right child of child node to NULL
-		leaf->left->cls=classin; //The class of this leaf node
+    node->left=new DTreeNode;
+    node->left->key_value=key;
+		node->left->inx=index;
+    node->left->left=NULL; //Sets left child of child node to NULL
+    node->left->right=NULL; //Sets right child of child node to NULL
+		node->left->leaf=classin; //The class of this node node
   }
-  if (leaf->right != NULL){
-    addDTree(key, leaf->right, index, classin);
+  if (node->right != NULL){
+    addDTree(key, node->right, index, classin);
   }
   else{
-    leaf->right=new DTreeNode;
-    leaf->right->key_value=key;
-		leaf->right->inx=index;
-    leaf->right->left=NULL; //Sets left child of child node to NULL
-    leaf->right->right=NULL; //Sets right child of child node to NULL
-		leaf->right->cls=classin; //The class of this leaf node
+    node->right=new DTreeNode;
+    node->right->key_value=key;
+		node->right->inx=index;
+    node->right->left=NULL; //Sets left child of child node to NULL
+    node->right->right=NULL; //Sets right child of child node to NULL
+		node->right->leaf=classin; //The class of this node node
   }
 }
 
-void DTree::genDTree(DTreeNode *&leaf, std::vector<std::string> &t, unsigned int &inx, std::string delim){
+void DTree::genDTree(DTreeNode *&node, std::vector<std::string> &t, unsigned int &inx, std::string delim){
 	//Pre-order string expected
 	//Example: 0.0:0 1.0:1 2.0:2 3.0:3 A B 4.0:4 C D 5.0:5 E F 6.0:6 7.0:7 8.0:8 G H 9.0:9 I J 10.0:10 K L 
 	//Value:Index or Class
@@ -61,24 +61,24 @@ void DTree::genDTree(DTreeNode *&leaf, std::vector<std::string> &t, unsigned int
   }
 
   if (inx < t.size()){
-    leaf=new DTreeNode;
-    leaf->left=NULL;
-    leaf->right=NULL;
+    node=new DTreeNode;
+    node->left=NULL;
+    node->right=NULL;
 
     Misc::splitStr(Misc::trim(t.at(inx)), delim, s, false);
 		if (s.size() == 1){
       //std::cerr << t.at(inx) << std::endl;
-      leaf->cls=s.at(0);
+      node->leaf=s.at(0);
       return;
     }
     else if (s.size() == 2){
       //std::cerr << t.at(inx) << std::endl;
       std::stringstream(s.at(0)) >> d;
-      leaf->key_value=d;
+      node->key_value=d;
       std::stringstream(s.at(1)) >> i;
-      leaf->inx=i; //Base zero
-      this->genDTree(leaf->left, t, ++inx, delim);
-			this->genDTree(leaf->right, t, ++inx, delim);
+      node->inx=i; //Base zero
+      this->genDTree(node->left, t, ++inx, delim);
+			this->genDTree(node->right, t, ++inx, delim);
     }
     else{
       //I shouldn't be here
@@ -89,38 +89,38 @@ void DTree::genDTree(DTreeNode *&leaf, std::vector<std::string> &t, unsigned int
   }
 }
 
-std::string DTree::getDTreeClass(DTreeNode *leaf, const std::vector<double> &fin){
-	if (leaf->left == NULL && leaf->right == NULL){
+std::string DTree::getDTreeClass(DTreeNode *node, const std::vector<double> &fin){
+	if (node->left == NULL && node->right == NULL){
 		//Return class
 		if (this->getClassSize() != 0){
-			return this->getClass(leaf->cls);
+			return this->getClass(node->leaf);
 		}
 		else{
-			return leaf->cls;
+			return node->leaf;
 		}
 	}
-	else if (leaf->left == NULL || leaf->right == NULL){
-		if (leaf->left != NULL){
+	else if (node->left == NULL || node->right == NULL){
+		if (node->left != NULL){
 			//Go deeper
-			return getDTreeClass(leaf->left, fin);
+			return getDTreeClass(node->left, fin);
 		}
 		else{
 			//Go deeper
-			return getDTreeClass(leaf->right, fin);
+			return getDTreeClass(node->right, fin);
 		}
 	}
 	else{
-		if (leaf->inx >= fin.size()){
-			std::cerr << "Error: Missing feature (inx = " << leaf->inx << " )" << std::endl;
+		if (node->inx >= fin.size()){
+			std::cerr << "Error: Missing feature (inx = " << node->inx << " )" << std::endl;
 			return "";
 		}
-		else if (fin.at(leaf->inx) <= leaf->key_value){
+		else if (fin.at(node->inx) <= node->key_value){
 			//Go deeper
-			return getDTreeClass(leaf->left, fin);
+			return getDTreeClass(node->left, fin);
 		}
 		else{
 			//Go deeper
-			return getDTreeClass(leaf->right, fin);
+			return getDTreeClass(node->right, fin);
 		}
 	}
 }
@@ -137,7 +137,7 @@ void DTree::addDTree(double key, unsigned int index, std::string classin){
 		root->inx=index;
     root->left=NULL;
     root->right=NULL;
-		root->cls=classin;
+		root->leaf=classin;
   }
 }
 
@@ -167,7 +167,7 @@ void DTree::genDTree(std::vector<std::string> &t, std::string delim){
 		Misc::splitStr(Misc::trim(t.at(inx)), delim, s, false);
 		if (s.size() == 1){
 			//std::cerr << t.at(inx) << std::endl;
-			root->cls=s.at(0);
+			root->leaf=s.at(0);
 			return;
 		}
 		else if (s.size() == 2){
