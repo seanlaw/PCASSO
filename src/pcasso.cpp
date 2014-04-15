@@ -13,10 +13,10 @@
 
 void usage(){
   std::cerr << "Usage:   pcasso [-options] <PDBfile>" << std::endl;
-  std::cerr << "Options: [-predict | -features]" << std::endl;
+  std::cerr << "Options: [-verbose]" << std::endl;
+//	std::cerr << "         [-predict | -features]" << std::endl;
 	std::cerr << "         [-trj TRAJfile]" << std::endl;
 	std::cerr << "         [-skip frames] [-start frame] [-stop frame]" << std::endl;
-	std::cerr << "         [-verbose]" << std::endl;
 //	std::cerr << "         [-dssp dsspFile]" << std::endl;
 //	std::cerr << "         [-trial]" << std::endl;
   std::cerr << std::endl;
