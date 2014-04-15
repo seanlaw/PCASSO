@@ -18,6 +18,7 @@
 Analyze::Analyze (){
 	sel.clear();
 	mol.clear();
+	nframe=0;
 }
 
 Analyze::~Analyze (){
@@ -99,6 +100,14 @@ void Analyze::setInput(const std::string& fin){
 
 std::string Analyze::getInput(){
   return ifile;
+}
+
+void Analyze::setNFrame(const unsigned int nframein){
+	nframe=nframein;
+}
+
+unsigned int Analyze::getNFrame(){
+	return nframe;
 }
 
 //All preAnalysis Functions
@@ -195,7 +204,17 @@ void AnalyzePcasso::runAnalysis(){
 					vote.insert(std::pair<std::string, unsigned int>(tmpClass,1));
 				}
 			}
-			std::cout << maxClass << std::endl; //Print majority vote
+			if (this->getVerbose() == true && this->getMol(0)->getNAtom() == feat.size()){
+				std::cout << this->getMol(0)->getAtom(i)->getSummary() << " ";
+				std::cout << maxClass; //Print majority vote
+				if (this->getNFrame() > 0){
+					std::cout << " " << this->getNFrame();
+				}
+				std::cout << std::endl;
+			}
+			else{
+				std::cout << maxClass << std::endl; //Print majority vote
+			}
 		}
 	}
 	else if (this->getOutType() == FEATURES || this->getOutType() == FEATURE){
@@ -913,6 +932,14 @@ void Analyze::pcasso(Molecule* mol, std::vector<std::vector<double> > &fdataIO){
 
 void AnalyzePcasso::setOutType(PcassoOutEnum pin){
 	pout=pin;
+}
+
+void AnalyzePcasso::setVerbose(bool verbosein){
+	verbose=verbosein;
+}
+
+bool AnalyzePcasso::getVerbose(){
+	return verbose;
 }
 
 PcassoOutEnum AnalyzePcasso::getOutType(){

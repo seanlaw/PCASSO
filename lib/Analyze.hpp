@@ -23,6 +23,7 @@ class Analyze {
 		std::vector<Molecule*> mol;
 		std::vector<std::vector<double> > fdata; //Frame data, cleared after each frame
     std::string ifile;
+		unsigned int nframe;
 
 	public:
 		Analyze ();
@@ -39,6 +40,9 @@ class Analyze {
 		std::vector<std::vector<double> >& getFDataVec();
     void setInput(const std::string& fin);
     std::string getInput();
+		void setNFrame(const unsigned int nframein);
+		unsigned int getNFrame();
+
 		
 		//Virtual functions
     virtual void readTopology(Molecule* molin, std::string topin="");
@@ -68,10 +72,13 @@ class AnalyzePcasso: public Analyze {
 	private:
 		PcassoOutEnum pout;
 		std::vector<DTree *> t;
+		bool verbose;
 
 	public:
 		AnalyzePcasso(std::string delim=":");
 		void setOutType(PcassoOutEnum pin);
+		void setVerbose(bool verbosein);
+		bool getVerbose();
 		PcassoOutEnum getOutType();
 		void preAnalysis(Molecule* molin, std::string fin="");
 		void runAnalysis();
