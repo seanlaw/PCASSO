@@ -24,6 +24,7 @@ class Analyze {
 		std::vector<std::vector<double> > fdata; //Frame data, cleared after each frame
     std::string ifile;
 		unsigned int nframe;
+		bool verbose;
 
 	public:
 		Analyze ();
@@ -42,6 +43,8 @@ class Analyze {
     std::string getInput();
 		void setNFrame(const unsigned int nframein);
 		unsigned int getNFrame();
+		void setVerbose(bool verbosein);
+		bool getVerbose();
 
 		
 		//Virtual functions
@@ -72,13 +75,10 @@ class AnalyzePcasso: public Analyze {
 	private:
 		PcassoOutEnum pout;
 		std::vector<DTree *> t;
-		bool verbose;
 
 	public:
 		AnalyzePcasso(std::string delim=":");
 		void setOutType(PcassoOutEnum pin);
-		void setVerbose(bool verbosein);
-		bool getVerbose();
 		PcassoOutEnum getOutType();
 		void preAnalysis(Molecule* molin, std::string fin="");
 		void runAnalysis();

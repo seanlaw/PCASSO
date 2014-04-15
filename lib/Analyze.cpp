@@ -19,6 +19,7 @@ Analyze::Analyze (){
 	sel.clear();
 	mol.clear();
 	nframe=0;
+	verbose=false;
 }
 
 Analyze::~Analyze (){
@@ -109,6 +110,15 @@ void Analyze::setNFrame(const unsigned int nframein){
 unsigned int Analyze::getNFrame(){
 	return nframe;
 }
+
+bool Analyze::getVerbose(){
+  return verbose;
+}
+
+void Analyze::setVerbose(bool verbosein){
+  verbose=verbosein;
+}
+
 
 //All preAnalysis Functions
 void Analyze::preAnalysis(){
@@ -934,14 +944,7 @@ void AnalyzePcasso::setOutType(PcassoOutEnum pin){
 	pout=pin;
 }
 
-void AnalyzePcasso::setVerbose(bool verbosein){
-	verbose=verbosein;
-}
-
-bool AnalyzePcasso::getVerbose(){
-	return verbose;
-}
-
 PcassoOutEnum AnalyzePcasso::getOutType(){
-	return pout;
+ return pout;
 }
+
