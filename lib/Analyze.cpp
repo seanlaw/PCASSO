@@ -18,7 +18,6 @@
 Analyze::Analyze (){
 	sel.clear();
 	mol.clear();
-	nframe=0;
 	verbose=false;
 }
 
@@ -101,14 +100,6 @@ void Analyze::setInput(const std::string& fin){
 
 std::string Analyze::getInput(){
   return ifile;
-}
-
-void Analyze::setNFrame(const unsigned int nframein){
-	nframe=nframein;
-}
-
-unsigned int Analyze::getNFrame(){
-	return nframe;
 }
 
 bool Analyze::getVerbose(){
@@ -215,15 +206,11 @@ void AnalyzePcasso::runAnalysis(){
 				}
 			}
 			if (this->getVerbose() == true && this->getMol(0)->getNAtom() == feat.size()){
-				std::cout << this->getMol(0)->getAtom(i)->getSummary() << " ";
-				std::cout << maxClass; //Print majority vote
-				if (this->getNFrame() > 0){
-					std::cout << " " << this->getNFrame();
-				}
-				std::cout << std::endl;
+				std::cout << " " << this->getMol(0)->getAtom(i)->getSummary();
+				std::cout << " " << maxClass; //Print majority vote
 			}
 			else{
-				std::cout << maxClass << std::endl; //Print majority vote
+				std::cout << " " << maxClass; //Print majority vote
 			}
 		}
 	}

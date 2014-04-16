@@ -23,7 +23,6 @@ class Analyze {
 		std::vector<Molecule*> mol;
 		std::vector<std::vector<double> > fdata; //Frame data, cleared after each frame
     std::string ifile;
-		unsigned int nframe;
 		bool verbose;
 
 	public:
@@ -41,8 +40,6 @@ class Analyze {
 		std::vector<std::vector<double> >& getFDataVec();
     void setInput(const std::string& fin);
     std::string getInput();
-		void setNFrame(const unsigned int nframein);
-		unsigned int getNFrame();
 		void setVerbose(bool verbosein);
 		bool getVerbose();
 

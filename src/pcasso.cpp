@@ -133,9 +133,10 @@ int main (int argc, char **argv){
             	break;
           	}	
           	nframe++;
+						std::cout << nframe << " " << ftrjin->getNPriv()*ftrjin->getTStepPS()/ftrjin->getNSavc()+i*ftrjin->getTStepPS();
 						//Analyze PCASSO
-						anin->setNFrame(nframe);
-						anin->runAnalysis();					
+						anin->runAnalysis();
+						std::cout << std::endl;
 					}
 				}
 				else{
@@ -182,7 +183,9 @@ int main (int argc, char **argv){
 			anin->clearMol();
 			anin->preAnalysis(mol, "");
 
+			std::cout << pdbs.at(j) << " 0";
 			anin->runAnalysis();
+			std::cout << std::endl;
 
 			/*
 			duration = (std::clock() - start) / (double) CLOCKS_PER_SEC;
