@@ -59,6 +59,8 @@ class Molecule {
 		std::string remarks;
 		bool iCodeFlag;
     Prmtop toppar;
+		unsigned int year;
+		std::string exp;
 
   public:
 		Molecule(); //Constructor
@@ -107,6 +109,10 @@ class Molecule {
 		bool getICodeFlag();
 		void assignAtmInx();
 		void resetAtmInx();
+		void setYear(const unsigned int& yearin);
+    unsigned int getYear();
+    void setExp(const std::string& expin);
+    std::string getExp();
 
 		void modPseudoCenter();
 		void pcasso (std::string dsspin="", PcassoOutEnum out=PREDICT);

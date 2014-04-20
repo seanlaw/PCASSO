@@ -1,22 +1,7 @@
 //Sean M. Law
 //Aaron T. Frank
-
+    
 /*
-This file is part of PCASSO.
-
-PCASSO is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-PCASSO is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with PCASSO.  If not, see <http://www.gnu.org/licenses/>.
-
 This file is part of MoleTools.
 
 MoleTools is free software: you can redistribute it and/or modify
@@ -43,7 +28,6 @@ along with MoleTools.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <fstream>
 #include <iomanip>
-#include <cstdlib>
 
 PDB::PDB(){
   chnMap.clear();
@@ -164,6 +148,7 @@ Molecule* PDB::readPDB(const std::string ifile, const int model, const std::stri
   std::string line;
   int currModel=0;
 	bool modelFlag=true;
+	bool firstModelFlag=false;
   Molecule *mol;
   Chain *chnEntry=new Chain;
   Residue *resEntry=new Residue;
@@ -171,6 +156,7 @@ Molecule* PDB::readPDB(const std::string ifile, const int model, const std::stri
   Atom *lastAtom;
   PDB pdb;
 	std::string PDBID;
+	unsigned int year;
 
 	if (format.compare("CHARMM") == 0){
 		mol=new MoleculeCHARMM;
@@ -196,9 +182,26 @@ Molecule* PDB::readPDB(const std::string ifile, const int model, const std::stri
   while (inp->good() && !(inp->eof())){
 
     getline(*inp,line);
-    if (line.size() > 6 && line.compare(0,6,"MODEL ") == 0){
+    if (line.compare(0,6,"HEADER") == 0){
+			std::stringstream(line.substr(57,2)) >> year;
+			if (year < 71){
+				mol->setYear(year+2000);
+			}
+			else{
+				mol->setYear(year+1900);
+			}
+			if (Misc::trim(line.substr(62,4)).length() == 4){
+				PDBID=Misc::trim(line.substr(62,4));
+				Misc::toupper(PDBID);
+			}
+		}
+		else if (line.compare(0,6,"EXPDTA") == 0){
+			mol->setExp(Misc::trim(line.substr(10,60)));
+		}
+		else if (line.size() > 6 && line.compare(0,6,"MODEL ") == 0){
       std::stringstream(line.substr(10,4)) >> currModel;
-      if ((model==0 && currModel == 1) || currModel==model){
+      if ((model==0 && firstModelFlag==false) || currModel==model){
+				firstModelFlag=true; //Processed first model
 				modelFlag=true;
       }
 			else{

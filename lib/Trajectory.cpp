@@ -1,22 +1,7 @@
 //Sean M. Law
 //Aaron T. Frank
-
+    
 /*
-This file is part of PCASSO.
-
-PCASSO is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-PCASSO is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with PCASSO.  If not, see <http://www.gnu.org/licenses/>.
-
 This file is part of MoleTools.
 
 MoleTools is free software: you can redistribute it and/or modify
@@ -42,9 +27,6 @@ along with MoleTools.  If not, see <http://www.gnu.org/licenses/>.
 #include <fstream>
 #include <iomanip>
 #include <iostream>
-#include <cstdlib>
-#include <limits>
-#include <cstring>
 
 //Deal with Endianess
 
@@ -115,6 +97,10 @@ bool Trajectory::findFormat(std::ifstream &trjin){
     swab=false;
 	}
 
+	if (buffer != NULL){
+		delete buffer;
+	}
+
   trjin.seekg(0, std::ios::beg);
 
 	clearHeader();
@@ -132,6 +118,8 @@ BinBuf* Trajectory::readFortran(std::ifstream &trjin, BinBuf *buffer, int &lengt
   int recStart;
   int recEnd;
 	BinBuf *binOut;
+
+	binOut=NULL;
 
   //Read Fortran record lengths and buffer
   trjin.read(reinterpret_cast<char*>(&recStart), sizeof(int));
@@ -230,7 +218,11 @@ void Trajectory::readHeader(std::ifstream &trjin){
 		qcheck=buffer[14].i;
 		
 		version=buffer[20].i;
-		
+
+		if (buffer != NULL){
+			delete buffer;
+		}
+
 		//Title
 		cbuffer=readFortran(trjin, cbuffer, length);
     this->setHdrSize(this->getHdrSize()+length+sizeof(int)*2);
@@ -239,6 +231,10 @@ void Trajectory::readHeader(std::ifstream &trjin){
     for (i=0; i< ntitle; i++){
       title[i].assign(cbuffer+sizeof(int)+i*80,80);
     }
+
+		if (cbuffer != NULL){
+			delete cbuffer;
+		}
 		
 
 		//NATOM
@@ -249,6 +245,10 @@ void Trajectory::readHeader(std::ifstream &trjin){
       std::cerr << "Error: Atom number mismatch!" << std::endl;
     }
 
+		if (buffer != NULL){
+			delete buffer;
+		}
+
     //FIXED
     if (nfixed > 0){
       buffer=readFortran(trjin, buffer, length);
@@ -258,6 +258,10 @@ void Trajectory::readHeader(std::ifstream &trjin){
 			//	std::cerr << buffer[i].i << ":";
       //  fixinx.push_back(buffer[i].i);
       //}
+
+			if (buffer != NULL){
+				delete buffer;
+			}
     }
 
     if (this->getShow() == true){
@@ -271,12 +275,6 @@ void Trajectory::readHeader(std::ifstream &trjin){
 		//Do nothing
 	}
 
-	if (buffer != NULL){
-		delete buffer;
-	}
-	if (cbuffer != NULL){
-		delete cbuffer;
-	}
 }
 
 void Trajectory::writeHeader(std::ofstream &trjout){
@@ -434,8 +432,9 @@ bool Trajectory::readFrame(std::ifstream &trjin, unsigned int frame){
   this->setLastFrame(frame+1); 
   //The "+1" positions the pointer at the end of this frame after it has been read
 
+
 	if (trjin.tellg() == this->getLastPos()){
-	  //End-of-file, note that trjin.good()/trjin.eof() wouldn't work!
+		//End-of-file, note that trjin.good()/trjin.eof() wouldn't work!
 		return false;
 	}
 
@@ -476,7 +475,9 @@ bool Trajectory::readFrame(std::ifstream &trjin, unsigned int frame){
     	}
 		}
 
-		delete dbuffer;
+		if (dbuffer != NULL){
+			delete dbuffer;
+		}
 	}
 
 	//Coordinates
@@ -537,7 +538,7 @@ bool Trajectory::readFrame(std::ifstream &trjin, unsigned int frame){
 		delete zbuffer;
 	}
 
-	return true;
+	return true; 
 }
 
 void Trajectory::writeFrame(std::ofstream &trjout, Trajectory *ftrjin){

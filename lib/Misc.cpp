@@ -1,22 +1,7 @@
 //Sean M. Law
 //Aaron T. Frank
-
+    
 /*
-This file is part of PCASSO.
-
-PCASSO is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-PCASSO is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with PCASSO.  If not, see <http://www.gnu.org/licenses/>.
-
 This file is part of MoleTools.
 
 MoleTools is free software: you can redistribute it and/or modify
@@ -32,6 +17,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with MoleTools.  If not, see <http://www.gnu.org/licenses/>.
 */
+
 
 #include "Misc.hpp"
 
@@ -127,6 +113,20 @@ template void Misc::splitNum<double> (const std::string&, const std::string&, st
 
 template void Misc::splitNum<float> (const std::string&, const std::string&, std::vector<float>&, const bool);
 
+std::string Misc::replace (const std::string &str, const std::string searchStr, const std::string replaceStr, const bool globalFlag){
+	std::string out;
+
+	out=str;
+	for (std::string::size_type pos=0; (pos=out.find(searchStr, pos)) != std::string::npos;){
+		out.replace(pos, searchStr.length(), replaceStr);
+		pos += replaceStr.length()-searchStr.length()+1;
+		if (globalFlag == false){
+			break;
+		}
+	}
+
+	return out;
+}
 
 bool Misc::isdigit (const std::string &str){
   return str.find_first_not_of("0123456789") == std::string::npos;

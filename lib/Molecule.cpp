@@ -53,6 +53,8 @@ Molecule::Molecule (){
 	storedSel.clear();
 	remarks.clear();
 	iCodeFlag=false;
+	year=0;
+	exp.clear();
 }
 
 Molecule::~Molecule (){
@@ -669,3 +671,20 @@ void Molecule::resetAtmInx(){
 		this->getAtom(i)->setAtmInx(std::numeric_limits<unsigned int>::max());
 	}
 }
+
+void Molecule::setYear(const unsigned int& yearin){
+  year=yearin;
+}
+
+unsigned int Molecule::getYear(){
+  return year;
+}
+
+void Molecule::setExp(const std::string& expin){
+  exp=expin;
+}
+
+std::string Molecule::getExp(){
+  return exp;
+}
+

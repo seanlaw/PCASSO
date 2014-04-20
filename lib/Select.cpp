@@ -1,22 +1,7 @@
 //Sean M. Law
 //Aaron T. Frank
-
+    
 /*
-This file is part of PCASSO.
-
-PCASSO is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-PCASSO is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with PCASSO.  If not, see <http://www.gnu.org/licenses/>.
-
 This file is part of MoleTools.
 
 MoleTools is free software: you can redistribute it and/or modify
@@ -41,9 +26,7 @@ along with MoleTools.  If not, see <http://www.gnu.org/licenses/>.
 #include "Misc.hpp"
 #include "Analyze.hpp"
 
-#include <algorithm>
-
-void Select::makeSel (Molecule* mol, std::string selin){
+void Select::makeSel (Molecule* mol, std::string selin, bool dieFlag){
 
   std::vector<Atom *> ref;
   unsigned int i;
@@ -66,13 +49,17 @@ void Select::makeSel (Molecule* mol, std::string selin){
 		std::cerr << std::endl << "Error: Selection \"";
 		std::cerr << selin << "\" did not match any atoms";
 		std::cerr << std::endl << std::endl;
-		exit(1);
+		if (dieFlag == true){
+			exit(1);
+		}
 	}
 
   mol->deselAll();
   for (i=0; i< atmSel.size(); i++){
     atmSel.at(i)->setSel(true);
   }
+
+	delete sel;
 }
 
 std::vector<Atom *> Select::recursiveDescentParser (const std::string &str, const std::vector<Atom *> &ref, const std::string &group){
@@ -485,7 +472,7 @@ void Select::initKeys(Molecule *mol){
   //std::cerr << selKeysAtm["HYDROGEN"] << std::endl;
 
   selKeysRes["HETERO"]="HETATM HETAT HETA";
-	selKeysRes["PEPTIDE"]="ALA CYS CYX VAL LEU ILE ASP GLU GLY GLN ASN HSD HSE HSP HIE HID HIS PRO TRP MET SER THR PHE TYR LYS ARG";
+	selKeysRes["PEPTIDE"]="ALA CSD ABA PCA CYS CYX CME VAL LEU ILE ASP GLU CGU GLY GLN ASN HSD HSE HSP HIE HID HIS PRO TRP MET MSE SER SEP THR TPO PHE TYR PTR LYS MLY ARG";
 	selKeysRes["PROTEIN"]=selKeysRes["PEPTIDE"];
 	//At physiological pH
 	selKeysRes["BASIC"]="ARG LYS";
