@@ -2,12 +2,12 @@
 
 include ../makefile.defs
 
-LIBOBJS = Analyze.o Atom.o Chain.o Constants.o DTree.o Enum.o Misc.o Molecule.o PCASSO.o PDB.o Prmtop.o Residue.o Select.o Trajectory.o Vector.o 
+LIBOBJS = Analyze.o Atom.o Chain.o DTree.o Misc.o Molecule.o PCASSO.o PDB.o Prmtop.o Residue.o Select.o Trajectory.o Vector.o 
 
 all:	libpcasso.$(LIBEXT)
 
 libpcasso.$(LIBEXT):	$(LIBOBJS)
-	$(CXX) $(CXXFLAGS) $(OPTFLAGS) $(LIBFLAGS) $^ -o libpcasso.$(LIBEXT)
+	ar rc libpcasso.$(LIBEXT) $(LIBOBJS)
 
 clean:
 	rm -rf *.o
@@ -16,4 +16,4 @@ clean:
 	rm -rf *~
 
 %.o:	%.cpp
-	$(CXX) $(CXXFLAGS) $(OPTFLAGS) $(LIBFLAGS) $(DEBUG) -c $< -o $@
+	$(CXX) $(CXXFLAGS) $(OPTFLAGS) $(DEBUG) -c $< -o $@
