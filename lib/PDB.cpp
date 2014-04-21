@@ -28,6 +28,7 @@ along with MoleTools.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <fstream>
 #include <iomanip>
+#include <cstdlib>
 
 PDB::PDB(){
   chnMap.clear();

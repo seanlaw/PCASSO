@@ -26,6 +26,8 @@ along with MoleTools.  If not, see <http://www.gnu.org/licenses/>.
 #include "Misc.hpp"
 #include "Analyze.hpp"
 
+#include <algorithm>
+
 void Select::makeSel (Molecule* mol, std::string selin, bool dieFlag){
 
   std::vector<Atom *> ref;

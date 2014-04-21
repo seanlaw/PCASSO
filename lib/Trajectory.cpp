@@ -27,6 +27,9 @@ along with MoleTools.  If not, see <http://www.gnu.org/licenses/>.
 #include <fstream>
 #include <iomanip>
 #include <iostream>
+#include <cstdlib>
+#include <cstring>
+#include <limits>
 
 //Deal with Endianess
 
