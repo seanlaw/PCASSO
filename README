@@ -1,0 +1,8 @@
+To compile PCASSO:
+
+make clean
+make
+
+add the 'lib' directory to your LD_LIBRARY_PATH
+
+
