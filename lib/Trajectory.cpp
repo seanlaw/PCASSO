@@ -517,7 +517,7 @@ bool Trajectory::readFrame(std::ifstream &trjin, unsigned int frame){
 		    	z.at(i)=zbuffer[i];
       	}
       	else{
-        	mol->getAtom(i)->setCoor(Vector(static_cast<double>(xbuffer[i]), static_cast<double>(ybuffer[i]), static_cast<double>(zbuffer[i])));
+        	mol->getAtom(i)->setCoor(Coor(static_cast<double>(xbuffer[i]), static_cast<double>(ybuffer[i]), static_cast<double>(zbuffer[i])));
       	}
 	
       	if (this->getShow() == true){

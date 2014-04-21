@@ -333,7 +333,7 @@ Atom* PDB::processAtomLine (std::string line, Atom* lastAtom){
   std::stringstream(line.substr(30,8)) >> x;
   std::stringstream(line.substr(38,8)) >> y;
   std::stringstream(line.substr(46,8)) >> z;
-  atmEntry->setCoor(Vector(x,y,z));
+  atmEntry->setCoor(Coor(x,y,z));
   if (line.size() >= 60){
     std::stringstream(line.substr(54,6)) >> occu;
     atmEntry->setOccu(occu);

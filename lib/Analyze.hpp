@@ -43,7 +43,7 @@ along with MoleTools.  If not, see <http://www.gnu.org/licenses/>.
 
 //Forward Declaration
 class Molecule;
-class Vector;
+class Coor;
 class DTree;
 
 //Abstract base class (cannot create instance of it!)
@@ -86,10 +86,10 @@ class Analyze {
 		virtual void postAnalysis();
 
 		//Analysis functions
-		static Vector centerOfGeometry(Molecule* mol, bool selFlag=true);
-		static double distance (const Vector& u, const Vector& v);
-		static double angle (const Vector& u, const Vector& v, const Vector& w);
-    static double dihedral (const Vector& t, const Vector& u, const Vector& v, const Vector& w);
+		static Coor centerOfGeometry(Molecule* mol, bool selFlag=true);
+		static double distance (const Coor& u, const Coor& v);
+		static double angle (const Coor& u, const Coor& v, const Coor& w);
+    static double dihedral (const Coor& t, const Coor& u, const Coor& v, const Coor& w);
 		static double distance (Molecule* sel1, Molecule* sel2, bool selFlag=true);
 		static double angle (Molecule* sel1, Molecule* sel2, Molecule* sel3, bool selFlag=true);
 	  static double dihedral (Molecule* sel1, Molecule* sel2, Molecule* sel3, Molecule* sel4,bool selFlag=true);

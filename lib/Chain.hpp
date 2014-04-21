@@ -45,8 +45,8 @@ class Atom;
 
 class Chain {
   private:
-    std::vector<Residue *> resVec; //Vector of residue pointers
-    std::vector<Atom *> atmVec; //Vector of atom pointers
+    std::vector<Residue *> resVec; //Coor of residue pointers
+    std::vector<Atom *> atmVec; //Coor of atom pointers
 //    bool sel;
 
   public:

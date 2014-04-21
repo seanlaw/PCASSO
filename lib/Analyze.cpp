@@ -39,7 +39,7 @@ along with MoleTools.  If not, see <http://www.gnu.org/licenses/>.
 #include "Chain.hpp"
 #include "Residue.hpp"
 #include "Atom.hpp"
-#include "Vector.hpp"
+#include "Coor.hpp"
 #include "Constants.hpp"
 #include "DTree.hpp"
 #include "PCASSO.hpp"
@@ -293,8 +293,8 @@ void AnalyzePcasso::postAnalysis(){
 
 //Basic analysis functions
 
-Vector Analyze::centerOfGeometry(Molecule *mol, bool selFlag){
-  Vector cog=Vector(0.0, 0.0, 0.0);
+Coor Analyze::centerOfGeometry(Molecule *mol, bool selFlag){
+  Coor cog=Coor(0.0, 0.0, 0.0);
 
   for (unsigned int i=0; i< mol->getAtmVecSize(); i++){
     if (selFlag == true && mol->getAtom(i)->getSel() == false){
@@ -313,14 +313,14 @@ Vector Analyze::centerOfGeometry(Molecule *mol, bool selFlag){
   return cog;
 }
 
-double Analyze::distance (const Vector& u, const Vector& v){
-	Vector d=u-v;
+double Analyze::distance (const Coor& u, const Coor& v){
+	Coor d=u-v;
 	return d.norm();
 }
 
-double Analyze::angle (const Vector& u, const Vector& v, const Vector& w){
+double Analyze::angle (const Coor& u, const Coor& v, const Coor& w){
   double angle;
-  Vector dx, dy;
+  Coor dx, dy;
   double dp, nx, ny;
 
   dx=u-v;
@@ -336,9 +336,9 @@ double Analyze::angle (const Vector& u, const Vector& v, const Vector& w){
   return angle/PI*180.0;
 }
 
-double Analyze::dihedral (const Vector& t, const Vector& u, const Vector& v, const Vector& w) {
+double Analyze::dihedral (const Coor& t, const Coor& u, const Coor& v, const Coor& w) {
   double dihedral;
-  Vector dx, dy, dz, p1, p2, p3;
+  Coor dx, dy, dz, p1, p2, p3;
   double np1, np2, dp1, dp2, ts;
 
   dx=t-u;

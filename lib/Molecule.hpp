@@ -37,7 +37,7 @@ along with MoleTools.  If not, see <http://www.gnu.org/licenses/>.
 #define MOLECULE_H
 
 #include "Prmtop.hpp"
-#include "Vector.hpp"
+#include "Coor.hpp"
 #include "Enum.hpp"
 
 #include <vector>

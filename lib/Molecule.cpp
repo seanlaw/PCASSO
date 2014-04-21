@@ -479,9 +479,9 @@ void Molecule::zeroCoor(){
 	Chain *chn;
   Residue *res;
   Atom *atm;
-	Vector coor;
+	Coor coor;
 
-	coor=Vector(0.0, 0.0, 0.0);
+	coor=Coor(0.0, 0.0, 0.0);
 
   for (unsigned int i=0; i< this->getChnVecSize(); i++){
     chn=this->getChain(i);
@@ -517,13 +517,13 @@ void Molecule::modPseudoCenter(){
 				}
 				else{
 					//No i+1 neighbor, modify coordinates
-					lastAtom->setCoor(Vector(9999.9, 9999.9, 9999.9));
+					lastAtom->setCoor(Coor(9999.9, 9999.9, 9999.9));
 				}
 			}
 			lastAtom=atmEntry;
 		}
 		//No i+1 neighbor for last atom in chain, modify coordinates
-		lastAtom->setCoor(Vector(9999.9, 9999.9, 9999.9));
+		lastAtom->setCoor(Coor(9999.9, 9999.9, 9999.9));
 	}
 }
 

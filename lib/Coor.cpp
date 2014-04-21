@@ -33,36 +33,36 @@ You should have received a copy of the GNU General Public License
 along with MoleTools.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "Vector.hpp"
+#include "Coor.hpp"
 
 #include <cmath>
 
-Vector::Vector(){
+Coor::Coor(){
   xcoor=0.0;
   ycoor=0.0;
   zcoor=0.0;
 }
 
-Vector::Vector(double xcoorin, double ycoorin, double zcoorin){
+Coor::Coor(double xcoorin, double ycoorin, double zcoorin){
   xcoor=xcoorin;
   ycoor=ycoorin;
   zcoor=zcoorin;
 }
 
-Vector::Vector(const Vector& vec){
+Coor::Coor(const Coor& vec){
   xcoor=vec.xcoor;
   ycoor=vec.ycoor;
   zcoor=vec.zcoor;
 }
 
-Vector& Vector::operator= (const Vector& vec){
+Coor& Coor::operator= (const Coor& vec){
   xcoor=vec.xcoor;
   ycoor=vec.ycoor;
   zcoor=vec.zcoor;
   return(*this);
 }
 
-Vector& Vector::operator= (const double val){
+Coor& Coor::operator= (const double val){
   xcoor=val;
   ycoor=val;
   zcoor=val;
@@ -70,22 +70,22 @@ Vector& Vector::operator= (const double val){
 }
 
 //Addition
-Vector Vector::operator+ (const Vector& vec) const{
-	return Vector(xcoor+vec.xcoor,ycoor+vec.ycoor,zcoor+vec.zcoor);
+Coor Coor::operator+ (const Coor& vec) const{
+	return Coor(xcoor+vec.xcoor,ycoor+vec.ycoor,zcoor+vec.zcoor);
 }
 
-Vector& Vector::operator+= (const Vector& vec){
+Coor& Coor::operator+= (const Coor& vec){
   xcoor+=vec.xcoor;
   ycoor+=vec.ycoor;
   zcoor+=vec.zcoor;
   return(*this);
 }
 
-Vector Vector::operator+ (const double val) const{
-	return Vector(xcoor+val,ycoor+val,zcoor+val);
+Coor Coor::operator+ (const double val) const{
+	return Coor(xcoor+val,ycoor+val,zcoor+val);
 }
 
-Vector& Vector::operator+= (const double val){
+Coor& Coor::operator+= (const double val){
   xcoor+=val;
   ycoor+=val;
   zcoor+=val;
@@ -93,22 +93,22 @@ Vector& Vector::operator+= (const double val){
 }
 
 //Subtraction
-Vector Vector::operator- (const Vector& vec) const{
-	return Vector(xcoor-vec.xcoor,ycoor-vec.ycoor,zcoor-vec.zcoor);
+Coor Coor::operator- (const Coor& vec) const{
+	return Coor(xcoor-vec.xcoor,ycoor-vec.ycoor,zcoor-vec.zcoor);
 }
 
-Vector& Vector::operator-= (const Vector& vec){
+Coor& Coor::operator-= (const Coor& vec){
   xcoor-=vec.xcoor;
   ycoor-=vec.ycoor;
   zcoor-=vec.zcoor;
   return(*this);
 }
 
-Vector Vector::operator- (const double val) const{
-	return Vector(xcoor-val,ycoor-val,zcoor-val);
+Coor Coor::operator- (const double val) const{
+	return Coor(xcoor-val,ycoor-val,zcoor-val);
 }
 
-Vector& Vector::operator-= (const double val){
+Coor& Coor::operator-= (const double val){
   xcoor-=val;
   ycoor-=val;
   zcoor-=val;
@@ -116,22 +116,22 @@ Vector& Vector::operator-= (const double val){
 }
 
 //Multiplication
-Vector Vector::operator* (const Vector& vec) const{
-	return Vector(xcoor*vec.xcoor,ycoor*vec.ycoor,zcoor*vec.zcoor);
+Coor Coor::operator* (const Coor& vec) const{
+	return Coor(xcoor*vec.xcoor,ycoor*vec.ycoor,zcoor*vec.zcoor);
 }
 
-Vector& Vector::operator*= (const Vector& vec){
+Coor& Coor::operator*= (const Coor& vec){
   xcoor*=vec.xcoor;
   ycoor*=vec.ycoor;
   zcoor*=vec.zcoor;
   return(*this);
 }
 
-Vector Vector::operator* (const double val) const{
-	return Vector(xcoor*val,ycoor*val,zcoor*val);
+Coor Coor::operator* (const double val) const{
+	return Coor(xcoor*val,ycoor*val,zcoor*val);
 }
 
-Vector& Vector::operator*= (const double val){
+Coor& Coor::operator*= (const double val){
   xcoor*=val;
   ycoor*=val;
   zcoor*=val;
@@ -139,22 +139,22 @@ Vector& Vector::operator*= (const double val){
 }
 
 //Division
-Vector Vector::operator/ (const Vector& vec) const{
-	return Vector(xcoor/vec.xcoor,ycoor/vec.ycoor,zcoor/vec.zcoor);
+Coor Coor::operator/ (const Coor& vec) const{
+	return Coor(xcoor/vec.xcoor,ycoor/vec.ycoor,zcoor/vec.zcoor);
 }
 
-Vector& Vector::operator/= (const Vector& vec){
+Coor& Coor::operator/= (const Coor& vec){
   xcoor/=vec.xcoor;
   ycoor/=vec.ycoor;
   zcoor/=vec.zcoor;
   return(*this);
 }
 
-Vector Vector::operator/ (const double val) const{
-	return Vector(xcoor/val,ycoor/val,zcoor/val);
+Coor Coor::operator/ (const double val) const{
+	return Coor(xcoor/val,ycoor/val,zcoor/val);
 }
 
-Vector& Vector::operator/= (const double val){
+Coor& Coor::operator/= (const double val){
   xcoor/=val;
   ycoor/=val;
   zcoor/=val;
@@ -162,21 +162,21 @@ Vector& Vector::operator/= (const double val){
 }
 
 
-Vector Vector::operator- () const {
-  return Vector(-xcoor,-ycoor,-zcoor);
+Coor Coor::operator- () const {
+  return Coor(-xcoor,-ycoor,-zcoor);
 }
 
-double Vector::dot (const Vector& vec) const { //Dot Product
+double Coor::dot (const Coor& vec) const { //Dot Product
 	return xcoor*vec.xcoor+ycoor*vec.ycoor+zcoor*vec.zcoor;
 }
 
-Vector Vector::cross (const Vector& vec) const { //Cross Product
-  return Vector(ycoor*vec.zcoor - zcoor*vec.ycoor,
+Coor Coor::cross (const Coor& vec) const { //Cross Product
+  return Coor(ycoor*vec.zcoor - zcoor*vec.ycoor,
                 zcoor*vec.xcoor - xcoor*vec.zcoor,
                 xcoor*vec.ycoor - ycoor*vec.xcoor);
 }
 
-double Vector::norm () const { //Normal
+double Coor::norm () const { //Normal
   return sqrt(xcoor*xcoor+ycoor*ycoor+zcoor*zcoor);
 }
 

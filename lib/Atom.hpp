@@ -36,7 +36,7 @@ along with MoleTools.  If not, see <http://www.gnu.org/licenses/>.
 #ifndef ATOM_H
 #define ATOM_H
 
-#include "Vector.hpp"
+#include "Coor.hpp"
 
 #include <vector>
 #include <string>
@@ -60,7 +60,7 @@ class Atom {
     std::string realid; //Store original chainid
     int  resid; //Residue sequence number
     std::string icode; //Code for insertion of residues
-    Vector coor; //X, Y, Z Coordinates
+    Coor coor; //X, Y, Z Coordinates
     double occu; //Occupancy
     double bfac; //B-factor or Temperature factor
     std::string segid; //Segment identifier
@@ -75,7 +75,7 @@ class Atom {
 
   public:
     Atom(); //Constructor
-    Atom(int atmnum, std::string atmname, std::string resname, int resnum, Vector vec, std::string seg=0); //Overload constructor
+    Atom(int atmnum, std::string atmname, std::string resname, int resnum, Coor vec, std::string seg=0); //Overload constructor
 
     void reset();
     void clone(Atom* atmin);
@@ -95,7 +95,7 @@ class Atom {
     std::string& getRealId();
     int& getResId();
     std::string& getICode();
-    Vector& getCoor ();
+    Coor& getCoor ();
     double& getX();
     double& getY();
     double& getZ();
@@ -137,7 +137,7 @@ class Atom {
     void setX(const double &xin);
     void setY(const double &yin);
     void setZ(const double &zin);
-    void setCoor(const Vector& coorin);
+    void setCoor(const Coor& coorin);
     void setOccu(const double& occuin);
     void setBFac(const double& bfacin);
     void setSegId(const std::string& segidin);

@@ -39,47 +39,47 @@ along with MoleTools.  If not, see <http://www.gnu.org/licenses/>.
 //#include <cmath>
 //#include <iostream>
 
-class Vector {
+class Coor {
   private:
     double xcoor;
     double ycoor;
     double zcoor;
 
   public:
-    Vector();
-    Vector(double xcoorin, double ycoorin, double zcoorin); //Constructor
-    Vector(const Vector& vec); //Overload Constructor 
+    Coor();
+    Coor(double xcoorin, double ycoorin, double zcoorin); //Constructor
+    Coor(const Coor& vec); //Overload Constructor 
 
-    Vector& operator= (const Vector& vec);
-    Vector& operator= (const double val);
+    Coor& operator= (const Coor& vec);
+    Coor& operator= (const double val);
     //Addition
-    Vector operator+ (const Vector& vec) const;
-    Vector& operator+= (const Vector& vec);
-    Vector operator+ (const double val) const;
-    Vector& operator+= (const double val);
+    Coor operator+ (const Coor& vec) const;
+    Coor& operator+= (const Coor& vec);
+    Coor operator+ (const double val) const;
+    Coor& operator+= (const double val);
     //Subtraction
-    Vector operator- (const Vector& vec) const;
-    Vector& operator-= (const Vector& vec);
-    Vector operator- (const double val) const;
-    Vector& operator-= (const double val);
+    Coor operator- (const Coor& vec) const;
+    Coor& operator-= (const Coor& vec);
+    Coor operator- (const double val) const;
+    Coor& operator-= (const double val);
     //Multiplication
-    Vector operator* (const Vector& vec) const;
-    Vector& operator*= (const Vector& vec);
-    Vector operator* (const double val) const;
-    Vector& operator*= (const double val);
+    Coor operator* (const Coor& vec) const;
+    Coor& operator*= (const Coor& vec);
+    Coor operator* (const double val) const;
+    Coor& operator*= (const double val);
     //Division
-    Vector operator/ (const Vector& vec) const;
-    Vector& operator/= (const Vector& vec);
-    Vector operator/ (const double val) const;
-    Vector& operator/= (const double val);
+    Coor operator/ (const Coor& vec) const;
+    Coor& operator/= (const Coor& vec);
+    Coor operator/ (const double val) const;
+    Coor& operator/= (const double val);
 
     double& x(){return xcoor;};
     double& y(){return ycoor;};
     double& z(){return zcoor;};
 
-    Vector operator- () const;
-    double dot (const Vector& vec) const; //Dot Product
-    Vector cross (const Vector& vec) const; //Cross Product
+    Coor operator- () const;
+    double dot (const Coor& vec) const; //Dot Product
+    Coor cross (const Coor& vec) const; //Cross Product
     double norm () const;
 };
 
