@@ -1,8 +1,27 @@
 To compile PCASSO:
 
-make clean
 make
 
-add the 'lib' directory to your LD_LIBRARY_PATH
+You will find the "pcasso" program in "/path/to/PCASSO/bin/pcasso"
+
+
+
+To see some usage information: 
+
+pcasso -h
+
+
+
+To analyze a standard PDB file:
+
+pcasso tests/file.pdb
+
+
+
+To analyze a standard CHARMM-formatted trajectory file:
+
+pcasso -trj tests/file.dcd tests/file.pdb
+
+
 
 
