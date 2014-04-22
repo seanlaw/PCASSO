@@ -28,7 +28,6 @@ along with MoleTools.  If not, see <http://www.gnu.org/licenses/>.
 #include <iomanip>
 #include <iostream>
 #include <cstdlib>
-#include <cstring>
 #include <limits>
 
 //Deal with Endianess
@@ -325,7 +324,12 @@ void Trajectory::writeHeader(std::ofstream &trjout){
     unsigned int *ntitle=reinterpret_cast<unsigned int *>(otitle);
     *ntitle=title.size();
     for (i=0; i< title.size(); i++){
-      memcpy(otitle+sizeof(int)+i*80, getTitle(i).c_str(), 80);
+			//We need to use a temporary/intermediate string because
+      //getTitle(i) returns a copy of the title. Multiple calls
+      //to the same element returns two separate copies with different
+      //begin() and end()
+      std::string tmpTitle=getTitle(i);
+      std::copy(tmpTitle.begin(), tmpTitle.end() , otitle+sizeof(int)+i*80);
     }
 
     writeFortran(trjout, otitle, length);
