@@ -6,8 +6,4 @@ OPTFLAGS = -O3
 INCFLAGS = -I../lib 
 LINKFLAGS = -L../lib -lpcasso
 BINDIR = ../bin
-ifeq ($(shell uname -o 2>/dev/null), Cygwin)
-	LIBEXT=a
-else
-	LIBEXT=a
-endif
+LIBEXT = a
