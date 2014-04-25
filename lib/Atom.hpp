@@ -47,15 +47,15 @@ class Residue;
 
 class Atom {
   private:
-		std::string pdbid;
+    std::string pdbid;
     std::string recname; //Record name: "ATOM  ", "HETATM"
     int  atmnum; //Atom serial number
     std::string atmname; //Atom name
-		std::string atmtype; //Mol2
+    std::string atmtype; //Mol2
     std::string alt; //Alternate location indicator
-		Residue* res;
+    Residue* res;
     std::string resname; //Residue name
-		Chain* chn;
+    Chain* chn;
     std::string chainid; //Chain identifier, modified if realid is duplicated
     std::string realid; //Store original chainid
     int  resid; //Residue sequence number
@@ -66,11 +66,11 @@ class Atom {
     std::string segid; //Segment identifier
     bool sel; //Selection flag
     std::string summary; //A:GLY1.CA style summary
-		std::string ss; //Secondary structure
+    std::string ss; //Secondary structure
     double mass;
     double charge;
-		unsigned int atminx; //For easier 2-D lookup tables
-		std::vector<double> data;
+    unsigned int atminx; //For easier 2-D lookup tables
+    std::vector<double> data;
     //All additional fields must also be added to Atom::clone(), Atom::dummy() functions!!
 
   public:
@@ -79,18 +79,18 @@ class Atom {
 
     void reset();
     void clone(Atom* atmin);
-		void dummy();
+    void dummy();
 
     //Get atom info
-		std::string& getPdbId();
+    std::string& getPdbId();
     std::string& getRecName();
     int& getAtmNum();
     std::string& getAtmName();
-		std::string& getAtmType();
+    std::string& getAtmType();
     std::string& getAlt();
-		Residue* getResidue();
+    Residue* getResidue();
     std::string& getResName();
-		Chain* getChain();
+    Chain* getChain();
     std::string& getChainId();
     std::string& getRealId();
     int& getResId();
@@ -104,29 +104,29 @@ class Atom {
     std::string& getSegId();
     bool& getSel();
     std::string& getSummary();
-		std::string& getSS();
+    std::string& getSS();
     double& getMass();
     double& getCharge();
-		std::vector<double>& getData();
-		double& getDataPoint(const unsigned int element);
-		unsigned int& getAtmInx();
-		unsigned int getDataSize();
-	
+    std::vector<double>& getData();
+    double& getDataPoint(const unsigned int element);
+    unsigned int& getAtmInx();
+    unsigned int getDataSize();
+  
     //Set atom info
-		void setPdbId(const std::string& pdbidin);
+    void setPdbId(const std::string& pdbidin);
     void setRecName(const std::string& recnamein);
     void setAtmNum(const int& atmnumin);
     void setAtmName(const std::string& atmnamein);
     void setAtmName(); //Clear
-		void setAtmType(const std::string& atmtypein);
-		void setAtmType(); //Clear
+    void setAtmType(const std::string& atmtypein);
+    void setAtmType(); //Clear
     void setAlt(const std::string& altin);
     void setAlt(); //Clear
-		void setResidue(); //Clear
-		void setResidue(Residue* resin=NULL);
+    void setResidue(); //Clear
+    void setResidue(Residue* resin=NULL);
     void setResName(const std::string& resnamein);
     void setResName(); //Clear
-		void setChain(Chain* chnin=NULL);
+    void setChain(Chain* chnin=NULL);
     void setChainId(const std::string& chainidin);
     void setRealId(const std::string& realidin);
     void setChainId(); //Clear
@@ -144,12 +144,12 @@ class Atom {
     void setSegId(); //Clear
     void setSel(const bool selin);
     void setSummary(const std::string& summaryin);
-		void setSS(const std::string& ssin);
+    void setSS(const std::string& ssin);
     void setMass(const double& massin);
     void setCharge(const double& chargein);
-		void setAtmInx(const unsigned int& atminxin);
-		void addData(const double& din);
-		void clearData();
+    void setAtmInx(const unsigned int& atminxin);
+    void addData(const double& din);
+    void clearData();
 };
 
 #endif

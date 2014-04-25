@@ -78,16 +78,16 @@ std::string Residue::getSegId(){
 }
 
 std::vector<Atom*>& Residue::getAtmVec(){
-	return atmVec;
+  return atmVec;
 }
 
 Atom* Residue::getAtom (const unsigned int &element){
-	if (element >= atmVec.size()){
-		return NULL;
-	}
-	else{
-  	return atmVec.at(element);
-	}
+  if (element >= atmVec.size()){
+    return NULL;
+  }
+  else{
+    return atmVec.at(element);
+  }
 }
 
 unsigned int Residue::getAtmVecSize (){
@@ -118,35 +118,35 @@ void Residue::deselAll(){
 
 std::string Residue::aa321(const std::string &aa){
 
-	if(aa.compare("ALA") == 0){return "A";}
-	else if(aa.compare("CYS") == 0){return "C";}
-	else if (aa.compare("ASP") == 0){return "D";}
-	else if (aa.compare("GLU") == 0){return "E";}
-	else if (aa.compare("PHE") == 0){return "F";}
-	else if (aa.compare("GLY") == 0){return "G";}
-	else if (aa.compare("HIS") == 0 || aa.compare("HSD") == 0 || aa.compare("HSE") == 0 || aa.compare("HSP") == 0){
-		return "H";
-	}
-	else if (aa.compare("ILE") == 0){return "I";}
-	else if (aa.compare("LYS") == 0){return "K";}
-	else if (aa.compare("LEU") == 0){return "L";}
-	else if (aa.compare("MET") == 0){return "M";}
-	else if (aa.compare("ASN") == 0){return "N";}
-	else if (aa.compare("PRO") == 0){return "P";}
-	else if (aa.compare("GLN") == 0){return "Q";}
-	else if (aa.compare("ARG") == 0){return "R";}
-	else if (aa.compare("SER") == 0){return "S";}
-	else if (aa.compare("THR") == 0){return "T";}
-	else if (aa.compare("VAL") == 0){return "V";}
-	else if (aa.compare("TRP") == 0){return "W";}
-	else if (aa.compare("TYR") == 0){return "Y";}
-	else{
-		return "";
-	}
+  if(aa.compare("ALA") == 0){return "A";}
+  else if(aa.compare("CYS") == 0){return "C";}
+  else if (aa.compare("ASP") == 0){return "D";}
+  else if (aa.compare("GLU") == 0){return "E";}
+  else if (aa.compare("PHE") == 0){return "F";}
+  else if (aa.compare("GLY") == 0){return "G";}
+  else if (aa.compare("HIS") == 0 || aa.compare("HSD") == 0 || aa.compare("HSE") == 0 || aa.compare("HSP") == 0){
+    return "H";
+  }
+  else if (aa.compare("ILE") == 0){return "I";}
+  else if (aa.compare("LYS") == 0){return "K";}
+  else if (aa.compare("LEU") == 0){return "L";}
+  else if (aa.compare("MET") == 0){return "M";}
+  else if (aa.compare("ASN") == 0){return "N";}
+  else if (aa.compare("PRO") == 0){return "P";}
+  else if (aa.compare("GLN") == 0){return "Q";}
+  else if (aa.compare("ARG") == 0){return "R";}
+  else if (aa.compare("SER") == 0){return "S";}
+  else if (aa.compare("THR") == 0){return "T";}
+  else if (aa.compare("VAL") == 0){return "V";}
+  else if (aa.compare("TRP") == 0){return "W";}
+  else if (aa.compare("TYR") == 0){return "Y";}
+  else{
+    return "";
+  }
 }
 
 std::string Residue::aa123(const std::string &aa){
-	if(aa.compare("A") == 0){return "A";}
+  if(aa.compare("A") == 0){return "A";}
   else if(aa.compare("C") == 0){return "CYS";} 
   else if (aa.compare("D") == 0){return "ASP";}
   else if (aa.compare("E") == 0){return "GLY";}
@@ -168,5 +168,5 @@ std::string Residue::aa123(const std::string &aa){
   else if (aa.compare("Y") == 0){return "TYR";}
   else{
     return "";
-  }	
+  } 
 }

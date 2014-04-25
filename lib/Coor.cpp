@@ -71,7 +71,7 @@ Coor& Coor::operator= (const double val){
 
 //Addition
 Coor Coor::operator+ (const Coor& vec) const{
-	return Coor(xcoor+vec.xcoor,ycoor+vec.ycoor,zcoor+vec.zcoor);
+  return Coor(xcoor+vec.xcoor,ycoor+vec.ycoor,zcoor+vec.zcoor);
 }
 
 Coor& Coor::operator+= (const Coor& vec){
@@ -82,7 +82,7 @@ Coor& Coor::operator+= (const Coor& vec){
 }
 
 Coor Coor::operator+ (const double val) const{
-	return Coor(xcoor+val,ycoor+val,zcoor+val);
+  return Coor(xcoor+val,ycoor+val,zcoor+val);
 }
 
 Coor& Coor::operator+= (const double val){
@@ -94,7 +94,7 @@ Coor& Coor::operator+= (const double val){
 
 //Subtraction
 Coor Coor::operator- (const Coor& vec) const{
-	return Coor(xcoor-vec.xcoor,ycoor-vec.ycoor,zcoor-vec.zcoor);
+  return Coor(xcoor-vec.xcoor,ycoor-vec.ycoor,zcoor-vec.zcoor);
 }
 
 Coor& Coor::operator-= (const Coor& vec){
@@ -105,7 +105,7 @@ Coor& Coor::operator-= (const Coor& vec){
 }
 
 Coor Coor::operator- (const double val) const{
-	return Coor(xcoor-val,ycoor-val,zcoor-val);
+  return Coor(xcoor-val,ycoor-val,zcoor-val);
 }
 
 Coor& Coor::operator-= (const double val){
@@ -117,7 +117,7 @@ Coor& Coor::operator-= (const double val){
 
 //Multiplication
 Coor Coor::operator* (const Coor& vec) const{
-	return Coor(xcoor*vec.xcoor,ycoor*vec.ycoor,zcoor*vec.zcoor);
+  return Coor(xcoor*vec.xcoor,ycoor*vec.ycoor,zcoor*vec.zcoor);
 }
 
 Coor& Coor::operator*= (const Coor& vec){
@@ -128,7 +128,7 @@ Coor& Coor::operator*= (const Coor& vec){
 }
 
 Coor Coor::operator* (const double val) const{
-	return Coor(xcoor*val,ycoor*val,zcoor*val);
+  return Coor(xcoor*val,ycoor*val,zcoor*val);
 }
 
 Coor& Coor::operator*= (const double val){
@@ -140,7 +140,7 @@ Coor& Coor::operator*= (const double val){
 
 //Division
 Coor Coor::operator/ (const Coor& vec) const{
-	return Coor(xcoor/vec.xcoor,ycoor/vec.ycoor,zcoor/vec.zcoor);
+  return Coor(xcoor/vec.xcoor,ycoor/vec.ycoor,zcoor/vec.zcoor);
 }
 
 Coor& Coor::operator/= (const Coor& vec){
@@ -151,7 +151,7 @@ Coor& Coor::operator/= (const Coor& vec){
 }
 
 Coor Coor::operator/ (const double val) const{
-	return Coor(xcoor/val,ycoor/val,zcoor/val);
+  return Coor(xcoor/val,ycoor/val,zcoor/val);
 }
 
 Coor& Coor::operator/= (const double val){
@@ -167,7 +167,7 @@ Coor Coor::operator- () const {
 }
 
 double Coor::dot (const Coor& vec) const { //Dot Product
-	return xcoor*vec.xcoor+ycoor*vec.ycoor+zcoor*vec.zcoor;
+  return xcoor*vec.xcoor+ycoor*vec.ycoor+zcoor*vec.zcoor;
 }
 
 Coor Coor::cross (const Coor& vec) const { //Cross Product

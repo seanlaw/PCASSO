@@ -54,27 +54,27 @@ class Molecule {
     std::vector<Chain*> chnVec;
     std::vector<Residue*> resVec;
     std::vector<Atom*> atmVec;
-		bool copyFlag; //This molecule is a copy if true
-		std::map< std::string, std::vector<bool> > storedSel;
-		std::string remarks;
-		bool iCodeFlag;
+    bool copyFlag; //This molecule is a copy if true
+    std::map< std::string, std::vector<bool> > storedSel;
+    std::string remarks;
+    bool iCodeFlag;
     Prmtop toppar;
-		unsigned int year;
-		std::string exp;
+    unsigned int year;
+    std::string exp;
 
   public:
-		Molecule(); //Constructor
-		virtual ~Molecule();
+    Molecule(); //Constructor
+    virtual ~Molecule();
     static Molecule* readPDB (const std::string ifile, const int model=0, const std::string format="", const bool hetFlag=true);
-		static Molecule* readPDB (const std::string ifile, const std::string format, const bool hetFlag=true);
+    static Molecule* readPDB (const std::string ifile, const std::string format, const bool hetFlag=true);
 //    std::string writePDB (bool selFlag=true, bool print=true, bool chnFlag=false);
-		std::string writePDB (bool selFlag, bool print, bool chnFlag);
-		std::string writePDB (bool selFlag, bool print);
-		std::string writePDB (bool chnFlag);
-		std::string writePDB ();
+    std::string writePDB (bool selFlag, bool print, bool chnFlag);
+    std::string writePDB (bool selFlag, bool print);
+    std::string writePDB (bool chnFlag);
+    std::string writePDB ();
     Molecule* clone(bool selFlag=true, bool keep=true);
-		Molecule* copy(bool selFlag=true);
-		void cat (Molecule* catmol, bool selFlag=true, bool keep=true);
+    Molecule* copy(bool selFlag=true);
+    void cat (Molecule* catmol, bool selFlag=true, bool keep=true);
     void addAtom(Atom* atmEntry);
     Atom* getAtom(const unsigned int& element); 
     void addChain(Chain* chnEntry);
@@ -84,7 +84,7 @@ class Molecule {
     unsigned int getResVecSize();
     unsigned int getAtmVecSize();
     std::vector<Atom*>& getAtmVec();
-		std::vector<Atom*> getAtmVecClone();
+    std::vector<Atom*> getAtmVecClone();
     Residue* getResidue(const unsigned int& element);
     void readTopology(const std::string& topin);
     void readParameter(const std::string& prmin);
@@ -95,35 +95,35 @@ class Molecule {
     void select(std::string sel);
     unsigned int getNAtom();
     unsigned int getNAtomSelected(); //Determining this on the fly is a good safety measure
-		void setCopyFlag(bool copyFlagIn=false);
-		bool getCopyFlag();
-		void storeSel(std::string key="tmp");
-		void recallSel(std::string key="tmp");
-		void eraseSel(std::string key="tmp");
-		void zeroCoor();
-		void addRemark(const std::string& remin);
-		void clearRemark();
-		std::string getRemark();
-		bool checkICode();
-		void setICodeFlag(bool iCodeFlagIn=false);
-		bool getICodeFlag();
-		void assignAtmInx();
-		void resetAtmInx();
-		void setYear(const unsigned int& yearin);
+    void setCopyFlag(bool copyFlagIn=false);
+    bool getCopyFlag();
+    void storeSel(std::string key="tmp");
+    void recallSel(std::string key="tmp");
+    void eraseSel(std::string key="tmp");
+    void zeroCoor();
+    void addRemark(const std::string& remin);
+    void clearRemark();
+    std::string getRemark();
+    bool checkICode();
+    void setICodeFlag(bool iCodeFlagIn=false);
+    bool getICodeFlag();
+    void assignAtmInx();
+    void resetAtmInx();
+    void setYear(const unsigned int& yearin);
     unsigned int getYear();
     void setExp(const std::string& expin);
     std::string getExp();
 
-		void modPseudoCenter();
-		void pcasso (std::string dsspin="", PcassoOutEnum out=PREDICT);
+    void modPseudoCenter();
+    void pcasso (std::string dsspin="", PcassoOutEnum out=PREDICT);
 
-		//Virtual functions
-		virtual void format();
+    //Virtual functions
+    virtual void format();
 };
 
 class MoleculeCHARMM: public Molecule{
-	public:
-		void format();
+  public:
+    void format();
 };
 
 #endif

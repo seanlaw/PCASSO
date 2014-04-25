@@ -39,13 +39,13 @@ along with MoleTools.  If not, see <http://www.gnu.org/licenses/>.
 #include <string>
 
 class PCASSO {
-	private:
-		//Don't put std::vector<std::string> t here!
-		//Can't instantiate object when using static call!
+  private:
+    //Don't put std::vector<std::string> t here!
+    //Can't instantiate object when using static call!
 
-	public:
-		static std::string getTree (unsigned int elem);
-		static unsigned int getNTree();
+  public:
+    static std::string getTree (unsigned int elem);
+    static unsigned int getNTree();
 
 };
 

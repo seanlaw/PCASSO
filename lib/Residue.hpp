@@ -58,7 +58,7 @@ class Residue {
     Atom* getEnd();
     std::string getSegId();
     void addAtom(Atom* atmEntry);
-		std::vector<Atom*>& getAtmVec();
+    std::vector<Atom*>& getAtmVec();
     Atom* getAtom (const unsigned int &element);
     unsigned int getAtmVecSize();
 //    void setSel(bool selin);
@@ -66,8 +66,8 @@ class Residue {
     void selAll();
     void deselAll();
 
-		static std::string aa321(const std::string &aa);
-		static std::string aa123(const std::string &aa);
+    static std::string aa321(const std::string &aa);
+    static std::string aa123(const std::string &aa);
 };
 
 #endif
