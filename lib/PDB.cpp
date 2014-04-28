@@ -304,7 +304,7 @@ Atom* PDB::processAtomLine (std::string line, Atom* lastAtom){
     std::stringstream(line.substr(6,5)) >> atmnum; //PDB format
     atmEntry->setAtmNum(atmnum); //PDB format
   }
-  atmEntry->setAtmName(line.substr(12,4));
+  atmEntry->setAtmName(Misc::trim(line.substr(12,4)));
   atmEntry->setAlt(line.substr(16,1));
   //atmEntry->setResName(line.substr(17,3)); //PDB format
   atmEntry->setResName(Misc::trim(line.substr(17,4)));
