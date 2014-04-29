@@ -171,19 +171,24 @@ void AnalyzePcasso::runAnalysis(){
   std::vector<std::string> dssp;
   std::vector<std::string> s;
   unsigned int natom;
+  bool last;
 
   Analyze::pcasso(this->getMol(0), this->getFDataVec()); //PCASSO features get stored in the second argument (a 2-D vector double)
 
   natom=0;
+  last=false;
 
   //Read DSSP file first
   if (this->getInput().length() > 0){
     dsspFile.open(this->getInput().c_str(), std::ios::in);
     dsspinp=&dsspFile;
-    while (dsspinp->good() && !(dsspinp->eof())){
+    while (dsspinp->good()){
       getline(*dsspinp, line);
+      if (line.length() == 0){
+        continue;
+      }
       Misc::splitStr(line, " \t", s, false);
-      if (s.size() > 0){
+      if (s.size() == 2 && last == false){
         if (s.at(s.size()-2).compare(0,1,"E") == 0 || s.at(s.size()-2).compare(0,1,"B") == 0){
           dssp.push_back("E");
         }
@@ -196,6 +201,15 @@ void AnalyzePcasso::runAnalysis(){
         else{
           std::cerr << "Warning unrecognized DSSP classification \"" << s.at(s.size()-2) << "\" has been set to \"X\"" << std::endl;
           dssp.push_back("X");
+        }
+      }
+      else{
+        last=true;
+        if (s.size() > 0){
+          dssp.push_back(s.at(s.size()-1));
+        }
+        else{
+          dssp.push_back("");
         }
       }
     }

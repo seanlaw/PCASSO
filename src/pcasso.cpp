@@ -166,7 +166,10 @@ int main (int argc, char **argv){
               break;
             } 
             nframe++;
-            std::cout << nframe << " " << ftrjin->getNPriv()*ftrjin->getTStepPS()/ftrjin->getNSavc()+i*ftrjin->getTStepPS();
+            if (out == PREDICT){
+              std::cout << nframe << " " << std::endl;
+              std::cout << ftrjin->getNPriv()*ftrjin->getTStepPS()/ftrjin->getNSavc()+i*ftrjin->getTStepPS();
+            }
             //Analyze PCASSO
             anin->runAnalysis();
             std::cout << std::endl;
@@ -192,7 +195,7 @@ int main (int argc, char **argv){
     mol=Molecule::readPDB(pdbs.at(0));
     std::cerr << "Processing file \"" << pdbs.at(0) << "..." << std::endl;
     mol->pcasso(dssp, out); //Makes temporary clone with C-alpha only, and analyzes it
-    delete mol;
+//    delete mol;
   }
   else{
     //Placed here for efficiency; construct trees once instead of calling mol->pcasso()
@@ -216,7 +219,9 @@ int main (int argc, char **argv){
       anin->clearMol();
       anin->preAnalysis(mol, "");
 
-      std::cout << pdbs.at(j) << " 0";
+      if (out == PREDICT){
+        std::cout << pdbs.at(j) << " 0";
+      }
       anin->runAnalysis();
       std::cout << std::endl;
 
