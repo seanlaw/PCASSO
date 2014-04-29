@@ -195,7 +195,7 @@ int main (int argc, char **argv){
     mol=Molecule::readPDB(pdbs.at(0));
     std::cerr << "Processing file \"" << pdbs.at(0) << "..." << std::endl;
     mol->pcasso(dssp, out); //Makes temporary clone with C-alpha only, and analyzes it
-//    delete mol;
+    delete mol;
   }
   else{
     //Placed here for efficiency; construct trees once instead of calling mol->pcasso()
