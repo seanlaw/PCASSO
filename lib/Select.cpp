@@ -28,7 +28,7 @@ along with MoleTools.  If not, see <http://www.gnu.org/licenses/>.
 
 #include <algorithm>
 
-void Select::makeSel (Molecule* mol, std::string selin, bool dieFlag){
+void Select::makeSel (Molecule* mol, std::string selin, bool dieFlag, bool verbose){
 
   std::vector<Atom *> ref;
   unsigned int i;
@@ -48,9 +48,11 @@ void Select::makeSel (Molecule* mol, std::string selin, bool dieFlag){
   std::vector<Atom *> atmSel=sel->recursiveDescentParser(selin, ref);
 
   if (atmSel.size() == 0){
-    std::cerr << std::endl << "Error: Selection \"";
-    std::cerr << selin << "\" did not match any atoms";
-    std::cerr << std::endl << std::endl;
+    if (verbose == true){
+      std::cerr << std::endl << "Error: Selection \"";
+      std::cerr << selin << "\" did not match any atoms";
+      std::cerr << std::endl << std::endl;
+    }
     if (dieFlag == true){
       exit(1);
     }

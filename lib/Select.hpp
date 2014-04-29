@@ -34,7 +34,7 @@ class Select {
     std::map<std::string, std::string> selKeysRes;
 
   public:
-    static void makeSel(Molecule* mol, std::string selin, bool dieFlag=true);
+    static void makeSel(Molecule* mol, std::string selin, bool dieFlag=true, bool verbose=true);
     void parseSel(std::string selin);
 
     //Recursive Descent Parser (RDP)
